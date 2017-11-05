@@ -24,10 +24,9 @@ public class ExcelReader {
 			workbook = getRelevantWorkbook(inputStream, excelFilePath);
 
 			Sheet firstSheet = workbook.getSheetAt(0);
-			Iterator<Row> iterator = firstSheet.iterator();
-
-			while (iterator.hasNext()) {
-				Row nextRow = iterator.next();
+			Iterator<Row> rowIterator = firstSheet.iterator();
+			while (rowIterator.hasNext()) {
+				Row nextRow = rowIterator.next();
 				Iterator<Cell> cellIterator = nextRow.cellIterator();
 				while (cellIterator.hasNext()) {
 					Cell cell = cellIterator.next();
@@ -62,7 +61,6 @@ public class ExcelReader {
 
 	private static Workbook getRelevantWorkbook(FileInputStream inputStream, String excelFilePath) throws IOException {
 		Workbook workbook = null;
-
 		if (excelFilePath.endsWith("xls")) {
 			workbook = new HSSFWorkbook(inputStream);
 		} else if (excelFilePath.endsWith("xlsx")) {
@@ -70,7 +68,6 @@ public class ExcelReader {
 		} else {
 			throw new IllegalArgumentException("Incorrect file format");
 		}
-
 		return workbook;
 	}
 
