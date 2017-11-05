@@ -65,6 +65,8 @@ public class ExcelReader {
 			workbook = new HSSFWorkbook(inputStream);
 		} else if (excelFilePath.endsWith("xlsx")) {
 			workbook = new XSSFWorkbook(inputStream);
+		} else if (excelFilePath.endsWith("xlsm")) {
+			workbook = new XSSFWorkbook(inputStream);
 		} else {
 			throw new IllegalArgumentException("Incorrect file format");
 		}
